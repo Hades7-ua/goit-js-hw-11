@@ -1,0 +1,63 @@
+
+
+
+.hidden {
+    display: none;
+}
+.search-form {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .search-form input[type="text"] {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .search-form button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    columns: 4; 
+    column-gap: 5px;
+  }
+  
+  .photo-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .photo-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .info {
+    margin-top: 10px;
+  }
+  
+  .info-item {
+    margin-bottom: 5px;
+  }
+  
+  .info-item b {
+    font-weight: bold;
+  }
+  
+
+  .load-more {
+    padding: 20px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
