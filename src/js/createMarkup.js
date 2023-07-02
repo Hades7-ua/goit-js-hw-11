@@ -1,6 +1,28 @@
 import { fetchPixabayImages } from './pixabayAPI';
+import Notiflix from 'notiflix';
 import refs from './refs';
 
+// console.log(createPhotoCard());
+async function fetchDataAndCreateMarkup() {
+  try {
+    const data = await fetchPixabayImages();
+    // createMarkup(data);
+  } catch (error) {
+    console.log(error);
+    Notiflix.Notify.failure(
+      'Sorry, there are no images matching your search query. Please try again.'
+    );
+  }
+}
+
+function createMarkup(data) {
+  refs.gallery.innerHTML = '';
+
+  data.forEach(imageData => {
+    const photoCardMarkup = createPhotoCard(imageData);
+    refs.gallery.insertAdjacentHTML('beforeend', photoCardMarkup);
+  });
+}
 function createPhotoCard(imageData) {
   const photoCard = `
     <div class="photo-card">
@@ -18,22 +40,4 @@ function createPhotoCard(imageData) {
   return photoCard;
 }
 
-async function fetchDataAndCreateMarkup() {
-  try {
-    const dataPixabay = await fetchPixabayImages();
-    createMarkup(dataPixabay);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-function createMarkup(dataPixabay) {
-  refs.gallery.innerHTML = '';
-
-  dataPixabay.forEach(imageData => {
-    const photoCardMarkup = createPhotoCard(imageData);
-    refs.gallery.insertAdjacentHTML('beforeend', photoCardMarkup);
-  });
-}
-
-export { fetchDataAndCreateMarkup, createMarkup };
+export { fetchDataAndCreateMarkup, createMarkup, createPhotoCard };

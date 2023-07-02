@@ -8,10 +8,11 @@ async function fetchPixabayImages(userRequest, page) {
       `${BASE_URL}?key=${API_KEY}&q=${userRequest}&image_type=photo&orientation=horizontal&safesearch=true&per_page=30&page=${page}`
     );
     const data = response.data;
+    console.log(data);
     return data;
   } catch (error) {
     throw new Error('Oops! Something went wrong! Try reloading the page!');
   }
 }
-
+// console.log(fetchPixabayImages());
 export { fetchPixabayImages };
