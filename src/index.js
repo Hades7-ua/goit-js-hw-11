@@ -2,7 +2,7 @@ import Notiflix from 'notiflix';
 import simpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-var lightbox = new simpleLightbox('.gallery a', {
+const lightbox = new simpleLightbox('.gallery a', {
   captionDelay: '250',
 });
 
@@ -15,11 +15,14 @@ let currentPage = 1;
 let totalHits = 0;
 let savedData = [];
 btnloadmore.classList.add('hidden');
+
 form.addEventListener('submit', event => {
   event.preventDefault();
   gallery.innerHTML = '';
   btnloadmore.classList.add('hidden');
   savedData = [];
+
+  currentPage = 1;
 
   const searchQuery = event.target.searchQuery.value;
 
@@ -37,6 +40,12 @@ form.addEventListener('submit', event => {
       }
 
       lightbox.refresh();
+      if (savedData.length === 0) {
+        Notiflix.Notify.warning(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );
+      }
+      lightbox.refresh();
     })
     .catch(error => {
       console.log(error);
@@ -44,12 +53,6 @@ form.addEventListener('submit', event => {
         'Oops! Something went wrong! Try reloading the page!'
       );
     });
-  if (savedData.length === 0) {
-    Notiflix.Notify.warning(
-      'Sorry, there are no images matching your search query. Please try again.'
-    );
-  }
-  lightbox.refresh();
 });
 
 btnloadmore.addEventListener('click', () => {

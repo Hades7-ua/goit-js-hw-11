@@ -3,10 +3,9 @@ import Notiflix from 'notiflix';
 import refs from './refs';
 
 function createPhotoCard(imageData) {
-  const photoCard = `
+  const photoCard = `<a href="${imageData.largeImageURL}">
     <div class="photo-card">
-    <a href="${imageData.largeImageURL}">
-      <img src="${imageData.webformatURL}" alt="${imageData.alt}" loading="lazy" />
+     <img src="${imageData.webformatURL}" alt="${imageData.alt}" loading="lazy" />
       <div class="info">
         <p class="info-item"><b>Likes:</b> ${imageData.likes}</p>
         <p class="info-item"><b>Views:</b> ${imageData.views}</p>
